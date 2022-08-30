@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  jupyter-lab:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - JUPYTER_TOKEN=codeop
+    volumes:
+      - ./nbs:/home/jovyan/work
+    ports:
+      - 8888:8888
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=codeop
+    ports:
+      - 5432:5432
+
